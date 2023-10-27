@@ -12,8 +12,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String email = "";
-  String password = "";
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,17 +46,19 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 32),
-            const RoundedInputField(
+            RoundedInputField(
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               hintText: "Your email",
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
+              controller: emailController,
             ),
             RoundedInputFieldObscure(
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
               hintText: "Your password",
               icon: const Icon(Icons.lock),
+              controller: passwordController,
             ),
             const SizedBox(height: 32),
             FilledButton(
