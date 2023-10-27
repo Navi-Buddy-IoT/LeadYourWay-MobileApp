@@ -46,7 +46,7 @@ class _SignUpState extends State<SignUp> {
             ),
             RoundedInputFieldObscure(
               keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.done,
+              textInputAction: TextInputAction.next,
               hintText: "Your password",
               icon: const Icon(Icons.lock),
               controller: passwordController,
@@ -61,12 +61,36 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(height: 32),
             FilledButton(
               onPressed: () {
-                // final email = emailController.text;
+                final email = emailController.text;
                 final password = passwordController.text;
                 final passwordConfirmation =
                     passwordConfirmationController.text;
-
-                if (password != passwordConfirmation) {
+                final bool emailValid = RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(email);
+                if (email.isEmpty ||
+                    password.isEmpty ||
+                    passwordConfirmation.isEmpty) {
+                  Fluttertoast.showToast(
+                    msg: "Please fill all fields",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.orangeAccent,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
+                } else if (!emailValid) {
+                  Fluttertoast.showToast(
+                    msg: "Please enter a valid email address",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.orangeAccent,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
+                } else if (password != passwordConfirmation) {
                   Fluttertoast.showToast(
                     msg: "Your password does not match",
                     toastLength: Toast.LENGTH_SHORT,
