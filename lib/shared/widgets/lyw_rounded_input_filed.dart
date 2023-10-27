@@ -1,36 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:lead_your_way/shared/widgets/lyw_tex_filed_container.dart';
+import 'package:lead_your_way/shared/widgets/lyw_text_filled_container.dart';
 
-class RoundedInputField extends StatelessWidget {
+class RoundedInputField extends StatefulWidget {
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final String hintText;
   final Icon icon;
-  const RoundedInputField({
-    super.key,
-    required this.keyboardType,
-    required this.textInputAction,
-    required this.hintText,
-    required this.icon,
-  });
+  final TextEditingController controller;
 
+  const RoundedInputField(
+      {super.key,
+      required this.keyboardType,
+      required this.textInputAction,
+      required this.hintText,
+      required this.icon,
+      required this.controller});
+
+  @override
+  State<RoundedInputField> createState() => _RoundedInputFieldState();
+}
+
+class _RoundedInputFieldState extends State<RoundedInputField> {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
-        keyboardType: keyboardType,
-        textInputAction: textInputAction,
+        keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction,
         cursorColor: Colors.white,
         decoration: InputDecoration(
-          hintText: hintText,
+          hintText: widget.hintText,
           hintStyle: const TextStyle(color: Colors.white),
           icon: Icon(
-            icon.icon,
+            widget.icon.icon,
             color: Colors.white,
           ),
           border: InputBorder.none,
         ),
         style: const TextStyle(color: Colors.white),
+        controller: widget.controller,
       ),
     );
   }
@@ -41,6 +49,7 @@ class RoundedInputFieldObscure extends StatefulWidget {
   final TextInputAction textInputAction;
   final String hintText;
   final Icon icon;
+  final TextEditingController controller;
 
   RoundedInputFieldObscure({
     Key? key,
@@ -48,6 +57,7 @@ class RoundedInputFieldObscure extends StatefulWidget {
     required this.textInputAction,
     required this.hintText,
     required this.icon,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -79,13 +89,14 @@ class _RoundedInputFieldObscureState extends State<RoundedInputFieldObscure> {
               });
             },
             icon: Icon(
-              obscureText ? Icons.visibility : Icons.visibility_off,
+              obscureText ? Icons.visibility_off : Icons.visibility,
               color: Colors.white,
             ),
           ),
           border: InputBorder.none,
         ),
         style: const TextStyle(color: Colors.white),
+        controller: widget.controller,
       ),
     );
   }
