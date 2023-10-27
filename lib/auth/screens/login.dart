@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
+import 'package:lead_your_way/shared/code/lyw_navigation.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
 class Login extends StatefulWidget {
@@ -77,12 +78,7 @@ class _LoginState extends State<Login> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SignUp(),
-              ),
-            );
+            navigateToScreen(context, const SignUp(), const Offset(1, 0));
           },
           child: const Text(
             "Sign up",
