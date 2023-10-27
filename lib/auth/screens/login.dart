@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
@@ -18,9 +19,7 @@ class _LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/logo-lyw.png'),
-            const SizedBox(
-              height: 32,
-            ),
+            const SizedBox(height: 32),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -35,9 +34,7 @@ class _LoginState extends State<Login> {
                 style: TextStyle(fontSize: 24),
               ),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            const SizedBox(height: 32),
             const RoundedInputField(
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
@@ -50,23 +47,52 @@ class _LoginState extends State<Login> {
               hintText: "Your password",
               icon: const Icon(Icons.lock),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            const SizedBox(height: 32),
             FilledButton(
-                onPressed: () {},
-                style: FilledButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  foregroundColor: Colors.white,
-                  fixedSize: const Size(200, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
+              onPressed: () {},
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.orangeAccent,
+                foregroundColor: Colors.white,
+                fixedSize: const Size(200, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
                 ),
-                child: Text("Login")),
+              ),
+              child: const Text("Login"),
+            ),
+            const SizedBox(height: 16),
+            SignUpLink(),
           ],
         ),
       ),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  Row SignUpLink() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("Don't have an account?"),
+        const SizedBox(width: 8),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUp(),
+              ),
+            );
+          },
+          child: const Text(
+            "Sign up",
+            style: TextStyle(
+              color: Colors.orange,
+              backgroundColor: Color.fromARGB(0, 138, 132, 132),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
