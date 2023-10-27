@@ -79,7 +79,7 @@ class _RoundedInputFieldObscureState extends State<RoundedInputFieldObscure> {
               });
             },
             icon: Icon(
-              obscureText ? Icons.visibility : Icons.visibility_off,
+              obscureText ? Icons.visibility_off : Icons.visibility,
               color: Colors.white,
             ),
           ),
