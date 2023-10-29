@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lead_your_way/renting/screens/search_page.dart';
 import 'package:lead_your_way/shared/widgets/lyw_bottom_navigation.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,9 +11,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("HOME")),
+      body: Center(child: SearchPage()),
       bottomNavigationBar: LywBottomNavigation(),
     );
   }
