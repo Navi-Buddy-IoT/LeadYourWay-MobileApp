@@ -20,7 +20,7 @@ class _SearchPageState extends State<SearchPage> {
       bicycleSize: "M",
       bicycleModel: "2023 Model",
       imageData:
-          "https://cdn.wikirby.com/thumb/d/d8/KSSU_Wheelie_Rider_Kirby_artwork.jpg/1200px-KSSU_Wheelie_Rider_Kirby_artwork.jpg",
+          "https://www.wheelbase.co.uk/wp-content/uploads/2019/06/Feature-Image.jpg",
     ),
     Bicycle(
       id: 2,
@@ -30,7 +30,7 @@ class _SearchPageState extends State<SearchPage> {
       bicycleSize: "L",
       bicycleModel: "2023 Model",
       imageData:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8KsGnY5qc9IXhxlFUYPSCqf9h3kwNv4T7EOpc5eQV1rI5I-rVaUgKtoMkB7twlKxulCM&usqp=CAU",
+          "https://hips.hearstapps.com/hmg-prod/images/bke040123gertrekfuelexe-004-642d98697b6b4.jpg",
     ),
     Bicycle(
       id: 3,
@@ -40,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
       bicycleSize: "XL",
       bicycleModel: "2023 Model",
       imageData:
-          "https://thoughtcatalog.com/wp-content/uploads/2018/06/leftoverpuns-pokemon.jpg?w=1920&h=1280&crop=1",
+          "https://www.bikegeardatabase.com/stories/vintage-biker/gt-spinergy.jpeg",
     ),
     Bicycle(
       id: 4,
@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
       bicycleSize: "S",
       bicycleModel: "2023 Model",
       imageData:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa2jCAUMzi3ISQjxyjHKAD3vLHWV1_XeAS7FsZJ-x4Qf_v1R4ILWEnfxXjSGAmB-CBqTE&usqp=CAU",
+          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/allied-bc40-mountain-bike-review-lead-1663794038.jpg",
     ),
     Bicycle(
       id: 5,
@@ -61,7 +61,7 @@ class _SearchPageState extends State<SearchPage> {
       bicycleSize: "M",
       bicycleModel: "2023 Model",
       imageData:
-          "https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/02/squirtle-gang.jpg",
+          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/allied-bc40-mountain-bike-review-lead-1663794038.jpg",
     ),
   ];
 
