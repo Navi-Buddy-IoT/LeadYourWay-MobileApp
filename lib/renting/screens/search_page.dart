@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/onboarding/widgets/bicycle_card.dart';
-import 'package:lead_your_way/shared/widgets/lyw_bottom_navigation.dart';
 import 'package:lead_your_way/shared/widgets/models/bicycle.dart';
 
 class SearchPage extends StatefulWidget {

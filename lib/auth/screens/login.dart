@@ -90,6 +90,7 @@ class _LoginState extends State<Login> {
                     fontSize: 16.0,
                   );
                 }
+                navigateToScreen(context, const HomePage(), Offset.zero);
               },
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.orangeAccent,
