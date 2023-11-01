@@ -6,7 +6,11 @@
 
 ---
 
-Welcome to **Lead Your Way** , your go-to bike rental app for a convenient, efficient, and enjoyable cycling experience.
+Welcome to **Lead Your Way** , your go-to bike rental app for a convenient, efficient, and enjoyable cycling experience    d
+
+.
+
+
 
 ## About Lead Your Way
 
