@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lead_your_way/shared/widgets/models/bicycle.dart';
+import 'package:lead_your_way/shared/models/bicycle.dart';
 
 class BicycleCard extends StatelessWidget {
   final Bicycle bicycle;

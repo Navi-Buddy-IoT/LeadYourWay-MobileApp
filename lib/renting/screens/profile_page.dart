@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/renting/widgets/profile_picture.dart';
-import 'package:lead_your_way/shared/widgets/lyw_bottom_navigation.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -29,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
           buildBicycles()
         ],
       ),
-      bottomNavigationBar: const LywBottomNavigation(),
+      //bottomNavigationBar: const LywBottomNavigation(),
     );
   }
 

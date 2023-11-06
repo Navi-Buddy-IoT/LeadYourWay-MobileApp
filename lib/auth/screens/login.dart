@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
-import 'package:lead_your_way/shared/code/lyw_navigation.dart';
-import 'package:lead_your_way/shared/utils/Notifier.dart';
+import 'package:lead_your_way/shared/services/Notifier.dart';
+import 'package:lead_your_way/shared/widgets/lyw_navigator.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
 class Login extends StatefulWidget {
@@ -81,7 +81,9 @@ class _LoginState extends State<Login> {
                   return;
                 }
 
-                navigateToScreen(context, const HomePage(), Offset.zero);
+                //navigateToScreen(context, const HomePage(), Offset.zero);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const LywNavigator()));
               },
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.orangeAccent,
@@ -110,7 +112,8 @@ class _LoginState extends State<Login> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            navigateToScreen(context, const SignUp(), const Offset(1, 0));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => const SignUp()));
           },
           child: const Text(
             "Sign up",

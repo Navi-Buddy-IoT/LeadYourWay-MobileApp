@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/renting/screens/search_page.dart';
-import 'package:lead_your_way/shared/widgets/lyw_bottom_navigation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +13,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(child: SearchPage()),
-      bottomNavigationBar: LywBottomNavigation(),
     );
   }
 }

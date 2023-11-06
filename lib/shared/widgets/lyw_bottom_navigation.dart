@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class LywBottomNavigation extends StatelessWidget {
-  const LywBottomNavigation({ Key? key }) : super(key: key);
+  final void Function(int) onNavigationChange;
+
+  const LywBottomNavigation(
+    { Key? key, required this.onNavigationChange }
+  ) : super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -18,7 +22,7 @@ class LywBottomNavigation extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           gap: 8,
           onTabChange: (int index) {
-            // TODO: Change screen based on index
+            onNavigationChange(index);
           },
           tabs: const [
             GButton(
