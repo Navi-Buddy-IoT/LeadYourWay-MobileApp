@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lead_your_way/auth/screens/login.dart';
-import 'package:lead_your_way/shared/code/lyw_navigation.dart';
+import 'package:lead_your_way/shared/services/Notifier.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
 class SignUp extends StatefulWidget {
@@ -24,7 +23,7 @@ class _SignUpState extends State<SignUp> {
     passwordConfirmationController.dispose();
     super.dispose();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,38 +70,20 @@ class _SignUpState extends State<SignUp> {
                 final bool emailValid = RegExp(
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(email);
-                if (email.isEmpty ||
-                    password.isEmpty ||
-                    passwordConfirmation.isEmpty) {
-                  Fluttertoast.showToast(
-                    msg: "Please fill all fields",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.orangeAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
-                } else if (!emailValid) {
-                  Fluttertoast.showToast(
-                    msg: "Please enter a valid email address",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.orangeAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
-                } else if (password != passwordConfirmation) {
-                  Fluttertoast.showToast(
-                    msg: "Your password does not match",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.orangeAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
+                
+                if (email.isEmpty || password.isEmpty || passwordConfirmation.isEmpty) {
+                  sendAlertMessage("Please fill all fields");
+                  return;
+                }
+
+                if (!emailValid) {
+                  sendAlertMessage("Please enter a valid email address");
+                  return;
+                }
+
+                if (password != passwordConfirmation) {
+                  sendAlertMessage("Your password does not match");
+                  return;
                 }
               },
               style: FilledButton.styleFrom(
@@ -132,7 +113,8 @@ class _SignUpState extends State<SignUp> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            navigateToScreen(context, const Login(), const Offset(1, 0));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => const Login()));
           },
           child: const Text(
             "Login",

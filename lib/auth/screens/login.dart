@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
-import 'package:lead_your_way/shared/code/lyw_navigation.dart';
+import 'package:lead_your_way/shared/services/Notifier.dart';
+import 'package:lead_your_way/shared/widgets/lyw_navigator.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
 class Login extends StatefulWidget {
@@ -68,30 +68,22 @@ class _LoginState extends State<Login> {
                 final email = emailController.text;
                 final password = passwordController.text;
                 final bool emailValid = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(email);
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
+                ).hasMatch(email);
+
                 if (email.isEmpty || password.isEmpty) {
-                  Fluttertoast.showToast(
-                    msg: "Please fill all the fields",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.orangeAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
-                } else if (!emailValid) {
-                  Fluttertoast.showToast(
-                    msg: "Please enter a valid email address",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.orangeAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
+                  sendAlertMessage("Please fill all the fields");
+                  return;
                 }
-                navigateToScreen(context, const HomePage(), Offset.zero);
+
+                if (!emailValid) {
+                  sendAlertMessage("Please enter a valid email address");
+                  return;
+                }
+
+                //navigateToScreen(context, const HomePage(), Offset.zero);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const LywNavigator()));
               },
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.orangeAccent,
@@ -120,7 +112,8 @@ class _LoginState extends State<Login> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            navigateToScreen(context, const SignUp(), const Offset(1, 0));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => const SignUp()));
           },
           child: const Text(
             "Sign up",
