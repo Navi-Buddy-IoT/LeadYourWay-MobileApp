@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
 import 'package:lead_your_way/renting/screens/profile_page.dart';
 import 'package:lead_your_way/renting/screens/search_page.dart';
+import 'package:lead_your_way/routes/app_route.dart';
 import 'package:lead_your_way/shared/widgets/lyw_bottom_navigation.dart';
 
 class LywNavigator extends StatefulWidget {
@@ -13,23 +14,23 @@ class LywNavigator extends StatefulWidget {
 }
 
 class _LywNavigatorState extends State<LywNavigator> {
-  int _currentIndex = 0;
-  List<Widget> pages = [
-    const HomePage(),
-    const ProfilePage(),
-    const SearchPage()
-  ];
+  Widget currentView = const HomePage();
 
-  void _onTabTapped(int index) {
+  void _onTabTapped(AppRoute route) {
     setState(() {
-      _currentIndex = index;
+      switch(route) {
+        case AppRoute.home: currentView = const HomePage();
+        case AppRoute.profile: currentView = const ProfilePage();
+        case AppRoute.search: currentView = const SearchPage();
+        case AppRoute.favorite: currentView = const SearchPage();
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: pages[_currentIndex]),
+      body: Center(child: currentView),
       bottomNavigationBar: LywBottomNavigation(onNavigationChange: _onTabTapped),
     );
   }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:lead_your_way/routes/app_route.dart';
 
 class LywBottomNavigation extends StatelessWidget {
-  final void Function(int) onNavigationChange;
+  final void Function(AppRoute) onNavigationChange;
 
   const LywBottomNavigation(
     { Key? key, required this.onNavigationChange }
@@ -22,7 +23,16 @@ class LywBottomNavigation extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           gap: 8,
           onTabChange: (int index) {
-            onNavigationChange(index);
+            AppRoute destination = AppRoute.home;
+
+            switch(index) {
+              case 0: destination = AppRoute.home;
+              case 1: destination = AppRoute.search;
+              case 2: destination = AppRoute.favorite;
+              case 3: destination = AppRoute.profile;
+            }
+
+            onNavigationChange(destination);
           },
           tabs: const [
             GButton(
