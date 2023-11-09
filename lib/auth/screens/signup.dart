@@ -23,7 +23,7 @@ class _SignUpState extends State<SignUp> {
     passwordConfirmationController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,11 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/logo-lyw.png'),
+            Image.asset(
+              'assets/logo-lyw.png',
+              width: 150,
+              height: 150,
+            ),
             const SizedBox(height: 32),
             const Text(
               "Create Account",
@@ -60,7 +64,7 @@ class _SignUpState extends State<SignUp> {
               icon: const Icon(Icons.lock),
               controller: passwordConfirmationController,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
                 final email = emailController.text;
@@ -70,8 +74,10 @@ class _SignUpState extends State<SignUp> {
                 final bool emailValid = RegExp(
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(email);
-                
-                if (email.isEmpty || password.isEmpty || passwordConfirmation.isEmpty) {
+
+                if (email.isEmpty ||
+                    password.isEmpty ||
+                    passwordConfirmation.isEmpty) {
                   sendAlertMessage("Please fill all fields");
                   return;
                 }
@@ -96,7 +102,7 @@ class _SignUpState extends State<SignUp> {
               ),
               child: const Text("Sign Up"),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 32),
             LoginLink(),
           ],
         ),

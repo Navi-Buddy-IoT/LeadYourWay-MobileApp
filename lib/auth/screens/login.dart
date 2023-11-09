@@ -31,7 +31,11 @@ class _LoginState extends State<Login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/logo-lyw.png'),
+            Image.asset(
+              'assets/logo-lyw.png',
+              width: 150,
+              height: 150,
+            ),
             const SizedBox(height: 32),
             GestureDetector(
               onTap: () {
@@ -62,14 +66,14 @@ class _LoginState extends State<Login> {
               icon: const Icon(Icons.lock),
               controller: passwordController,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
                 final email = emailController.text;
                 final password = passwordController.text;
                 final bool emailValid = RegExp(
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
-                ).hasMatch(email);
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(email);
 
                 if (email.isEmpty || password.isEmpty) {
                   sendAlertMessage("Please fill all the fields");
@@ -82,8 +86,8 @@ class _LoginState extends State<Login> {
                 }
 
                 //navigateToScreen(context, const HomePage(), Offset.zero);
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const LywNavigator()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const LywNavigator()));
               },
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.orangeAccent,
@@ -95,7 +99,7 @@ class _LoginState extends State<Login> {
               ),
               child: const Text("Login"),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 32),
             SignUpLink(),
           ],
         ),

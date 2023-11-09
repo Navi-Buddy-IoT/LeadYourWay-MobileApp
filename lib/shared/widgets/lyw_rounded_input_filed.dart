@@ -27,17 +27,17 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
       child: TextField(
         keyboardType: widget.keyboardType,
         textInputAction: widget.textInputAction,
-        cursorColor: Colors.white,
+        cursorColor: const Color(0xff424242),
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(color: Color(0xff424242)),
           icon: Icon(
             widget.icon.icon,
-            color: Colors.white,
+            color: const Color(0xff424242),
           ),
           border: InputBorder.none,
         ),
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Color(0xff424242)),
         controller: widget.controller,
       ),
     );
@@ -74,13 +74,13 @@ class _RoundedInputFieldObscureState extends State<RoundedInputFieldObscure> {
         keyboardType: widget.keyboardType,
         textInputAction: widget.textInputAction,
         obscureText: obscureText,
-        cursorColor: Colors.white,
+        cursorColor: const Color(0xff424242),
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(color: Color(0xff424242)),
           icon: Icon(
             widget.icon.icon,
-            color: Colors.white,
+            color: const Color(0xff424242),
           ),
           suffixIcon: IconButton(
             onPressed: () {
@@ -90,12 +90,12 @@ class _RoundedInputFieldObscureState extends State<RoundedInputFieldObscure> {
             },
             icon: Icon(
               obscureText ? Icons.visibility_off : Icons.visibility,
-              color: Colors.white,
+              color: const Color(0xff424242),
             ),
           ),
           border: InputBorder.none,
         ),
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Color(0xff424242)),
         controller: widget.controller,
       ),
     );
