@@ -34,8 +34,8 @@ class _SignUpState extends State<SignUp> {
           children: [
             Image.asset(
               'assets/logo-lyw.png',
-              width: 150,
-              height: 150,
+              width: 125,
+              height: 125,
             ),
             const SizedBox(height: 32),
             const Text(

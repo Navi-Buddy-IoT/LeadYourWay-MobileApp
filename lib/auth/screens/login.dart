@@ -33,8 +33,8 @@ class _LoginState extends State<Login> {
           children: [
             Image.asset(
               'assets/logo-lyw.png',
-              width: 150,
-              height: 150,
+              width: 125,
+              height: 125,
             ),
             const SizedBox(height: 32),
             GestureDetector(
@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
               },
               child: const Text(
                 "Welcome Back!",
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, color: Color(0xff424242)),
               ),
             ),
             const SizedBox(height: 32),
@@ -99,7 +99,7 @@ class _LoginState extends State<Login> {
               ),
               child: const Text("Login"),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 64),
             SignUpLink(),
           ],
         ),
