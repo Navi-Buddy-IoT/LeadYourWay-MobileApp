@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/shared/widgets/lyw_text_filled_container.dart';
 
+const Color inputColor = Colors.black;
+
 class RoundedInputField extends StatefulWidget {
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
@@ -27,17 +29,17 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
       child: TextField(
         keyboardType: widget.keyboardType,
         textInputAction: widget.textInputAction,
-        cursorColor: Colors.white,
+        cursorColor: inputColor,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(color: inputColor),
           icon: Icon(
             widget.icon.icon,
-            color: Colors.white,
+            color: inputColor,
           ),
           border: InputBorder.none,
         ),
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: inputColor),
         controller: widget.controller,
       ),
     );
@@ -74,13 +76,13 @@ class _RoundedInputFieldObscureState extends State<RoundedInputFieldObscure> {
         keyboardType: widget.keyboardType,
         textInputAction: widget.textInputAction,
         obscureText: obscureText,
-        cursorColor: Colors.white,
+        cursorColor: inputColor,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(color: inputColor),
           icon: Icon(
             widget.icon.icon,
-            color: Colors.white,
+            color: inputColor,
           ),
           suffixIcon: IconButton(
             onPressed: () {
@@ -90,12 +92,12 @@ class _RoundedInputFieldObscureState extends State<RoundedInputFieldObscure> {
             },
             icon: Icon(
               obscureText ? Icons.visibility_off : Icons.visibility,
-              color: Colors.white,
+              color: inputColor,
             ),
           ),
           border: InputBorder.none,
         ),
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: inputColor),
         controller: widget.controller,
       ),
     );

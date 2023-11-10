@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/auth/screens/login.dart';
-import 'package:lead_your_way/shared/services/Notifier.dart';
+import 'package:lead_your_way/shared/services/Smooth_Navigation.dart';
+import 'package:lead_your_way/shared/services/notifier.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
 class SignUp extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SignUpState extends State<SignUp> {
     passwordConfirmationController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,11 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/logo-lyw.png'),
+            Image.asset(
+              'assets/logo-lyw.png',
+              width: 125,
+              height: 125,
+            ),
             const SizedBox(height: 32),
             const Text(
               "Create Account",
@@ -60,7 +65,7 @@ class _SignUpState extends State<SignUp> {
               icon: const Icon(Icons.lock),
               controller: passwordConfirmationController,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
                 final email = emailController.text;
@@ -70,8 +75,10 @@ class _SignUpState extends State<SignUp> {
                 final bool emailValid = RegExp(
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(email);
-                
-                if (email.isEmpty || password.isEmpty || passwordConfirmation.isEmpty) {
+
+                if (email.isEmpty ||
+                    password.isEmpty ||
+                    passwordConfirmation.isEmpty) {
                   sendAlertMessage("Please fill all fields");
                   return;
                 }
@@ -87,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                 }
               },
               style: FilledButton.styleFrom(
-                backgroundColor: Colors.orangeAccent,
+                backgroundColor: const Color.fromARGB(255, 252, 150, 82),
                 foregroundColor: Colors.white,
                 fixedSize: const Size(200, 50),
                 shape: RoundedRectangleBorder(
@@ -96,7 +103,7 @@ class _SignUpState extends State<SignUp> {
               ),
               child: const Text("Sign Up"),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 32),
             LoginLink(),
           ],
         ),
@@ -113,8 +120,15 @@ class _SignUpState extends State<SignUp> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const Login()));
+            smoothNavigation(
+              context,
+              const SignUp(),
+              const Login(),
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+            );
           },
           child: const Text(
             "Login",

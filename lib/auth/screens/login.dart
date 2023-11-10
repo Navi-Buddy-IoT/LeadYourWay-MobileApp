@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
-import 'package:lead_your_way/shared/services/Notifier.dart';
+import 'package:lead_your_way/shared/services/Smooth_Navigation.dart';
+import 'package:lead_your_way/shared/services/notifier.dart';
 import 'package:lead_your_way/shared/widgets/lyw_navigator.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
@@ -31,7 +32,11 @@ class _LoginState extends State<Login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/logo-lyw.png'),
+            Image.asset(
+              'assets/logo-lyw.png',
+              width: 125,
+              height: 125,
+            ),
             const SizedBox(height: 32),
             GestureDetector(
               onTap: () {
@@ -44,7 +49,7 @@ class _LoginState extends State<Login> {
               },
               child: const Text(
                 "Welcome Back!",
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, color: Color(0xff424242)),
               ),
             ),
             const SizedBox(height: 32),
@@ -62,14 +67,14 @@ class _LoginState extends State<Login> {
               icon: const Icon(Icons.lock),
               controller: passwordController,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
                 final email = emailController.text;
                 final password = passwordController.text;
                 final bool emailValid = RegExp(
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
-                ).hasMatch(email);
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(email);
 
                 if (email.isEmpty || password.isEmpty) {
                   sendAlertMessage("Please fill all the fields");
@@ -81,12 +86,18 @@ class _LoginState extends State<Login> {
                   return;
                 }
 
-                //navigateToScreen(context, const HomePage(), Offset.zero);
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const LywNavigator()));
+                smoothNavigation(
+                  context,
+                  const Login(),
+                  const LywNavigator(),
+                  0.0,
+                  -1.0,
+                  0.0,
+                  1.0,
+                );
               },
               style: FilledButton.styleFrom(
-                backgroundColor: Colors.orangeAccent,
+                backgroundColor: const Color.fromARGB(255, 252, 150, 82),
                 foregroundColor: Colors.white,
                 fixedSize: const Size(200, 50),
                 shape: RoundedRectangleBorder(
@@ -95,7 +106,7 @@ class _LoginState extends State<Login> {
               ),
               child: const Text("Login"),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 96),
             SignUpLink(),
           ],
         ),
@@ -112,13 +123,20 @@ class _LoginState extends State<Login> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const SignUp()));
+            smoothNavigation(
+              context,
+              const Login(),
+              const SignUp(),
+              -1.0,
+              0.0,
+              1.0,
+              0.0,
+            );
           },
           child: const Text(
             "Sign up",
             style: TextStyle(
-              color: Colors.orange,
+              color: Color.fromARGB(255, 238, 163, 113),
               backgroundColor: Color.fromARGB(0, 138, 132, 132),
             ),
           ),
