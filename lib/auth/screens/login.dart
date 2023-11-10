@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
-import 'package:lead_your_way/shared/services/Notifier.dart';
+import 'package:lead_your_way/shared/services/Smooth_Navigation.dart';
+import 'package:lead_your_way/shared/services/notifier.dart';
 import 'package:lead_your_way/shared/widgets/lyw_navigator.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
@@ -85,12 +86,18 @@ class _LoginState extends State<Login> {
                   return;
                 }
 
-                //navigateToScreen(context, const HomePage(), Offset.zero);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LywNavigator()));
+                smoothNavigation(
+                  context,
+                  const Login(),
+                  const LywNavigator(),
+                  0.0,
+                  -1.0,
+                  0.0,
+                  1.0,
+                );
               },
               style: FilledButton.styleFrom(
-                backgroundColor: Colors.orangeAccent,
+                backgroundColor: const Color.fromARGB(255, 252, 150, 82),
                 foregroundColor: Colors.white,
                 fixedSize: const Size(200, 50),
                 shape: RoundedRectangleBorder(
@@ -99,7 +106,7 @@ class _LoginState extends State<Login> {
               ),
               child: const Text("Login"),
             ),
-            const SizedBox(height: 64),
+            const SizedBox(height: 96),
             SignUpLink(),
           ],
         ),
@@ -116,13 +123,20 @@ class _LoginState extends State<Login> {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const SignUp()));
+            smoothNavigation(
+              context,
+              const Login(),
+              const SignUp(),
+              -1.0,
+              0.0,
+              1.0,
+              0.0,
+            );
           },
           child: const Text(
             "Sign up",
             style: TextStyle(
-              color: Colors.orange,
+              color: Color.fromARGB(255, 238, 163, 113),
               backgroundColor: Color.fromARGB(0, 138, 132, 132),
             ),
           ),
