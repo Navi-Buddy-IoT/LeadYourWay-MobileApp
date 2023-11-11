@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lead_your_way/renting/screens/rent_page.dart';
 import 'package:lead_your_way/shared/models/bicycle.dart';
 
 class BicycleCard extends StatelessWidget {
@@ -27,16 +28,16 @@ class BicycleCard extends StatelessWidget {
               children: [
                 Text(
                   bicycle.bicycleName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   bicycle.bicycleDescription,
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -45,22 +46,25 @@ class BicycleCard extends StatelessWidget {
                       children: [
                         Text(
                           'Price: \$${bicycle.bicyclePrice.toStringAsFixed(2)}',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         Text('Size: ${bicycle.bicycleSize}',
-                            style: TextStyle(fontSize: 16)),
+                            style: const TextStyle(fontSize: 16)),
                         Text('Model: ${bicycle.bicycleModel}',
-                            style: TextStyle(fontSize: 16)),
+                            style: const TextStyle(fontSize: 16)),
                       ],
                     ),
-                    Spacer(), // Pushes "Rent" button to the right
+                    const Spacer(), // Pushes "Rent" button to the right
                     ElevatedButton(
                       onPressed: () {
-                        // Add your rent functionality here
-                        // For example, you can navigate to a rent screen.
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    RentPage(bicycle: bicycle)));
                       },
-                      child: Text("Rent"),
+                      child: const Text("Rent"),
                     ),
                   ],
                 ),
