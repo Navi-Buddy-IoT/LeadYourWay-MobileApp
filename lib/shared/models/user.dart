@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:lead_your_way/shared/models/bicycle.dart';
+import 'package:lead_your_way/shared/models/card.dart' as lyw;
 
 class User {
   final int id;
@@ -11,6 +13,7 @@ class User {
   final double longitude;
   final String imageData;
   final List<Bicycle> bicycles;
+  final List<lyw.Card> cards;
 
   User({
     required this.id,
@@ -23,6 +26,7 @@ class User {
     required this.longitude,
     required this.imageData,
     required this.bicycles,
+    required this.cards,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -38,6 +42,9 @@ class User {
       imageData: json['imageData'],
       bicycles: (json['bicycles'] as List<dynamic>)
           .map((bike) => Bicycle.fromJson(bike))
+          .toList(),
+      cards: (json['cards'] as List<dynamic>)
+          .map((card) => lyw.Card.fromJson(card))
           .toList(),
     );
   }
@@ -55,6 +62,9 @@ class User {
       imageData: map['imageData'],
       bicycles: (map['bicycles'] as List<dynamic>)
           .map((bike) => Bicycle.fromMap(bike))
+          .toList(),
+      cards: (map['cards'] as List<dynamic>)
+          .map((card) => lyw.Card.fromMap(card))
           .toList(),
     );
   }
