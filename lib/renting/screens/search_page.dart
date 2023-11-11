@@ -20,6 +20,9 @@ class _SearchPageState extends State<SearchPage> {
       bicycleModel: "2023 Model",
       imageData:
           "https://www.wheelbase.co.uk/wp-content/uploads/2019/06/Feature-Image.jpg",
+      latitudeData: -12.202215393186274,
+      longitudeData: -77.00418832764358,
+      userId: 1,
     ),
     Bicycle(
       id: 2,
@@ -30,6 +33,9 @@ class _SearchPageState extends State<SearchPage> {
       bicycleModel: "2023 Model",
       imageData:
           "https://hips.hearstapps.com/hmg-prod/images/bke040123gertrekfuelexe-004-642d98697b6b4.jpg",
+      latitudeData: -12.202215393186274,
+      longitudeData: -77.00418832764358,
+      userId: 1,
     ),
     Bicycle(
       id: 3,
@@ -40,6 +46,9 @@ class _SearchPageState extends State<SearchPage> {
       bicycleModel: "2023 Model",
       imageData:
           "https://www.bikegeardatabase.com/stories/vintage-biker/gt-spinergy.jpeg",
+      latitudeData: -12.202215393186274,
+      longitudeData: -77.00418832764358,
+      userId: 1,
     ),
     Bicycle(
       id: 4,
@@ -50,6 +59,9 @@ class _SearchPageState extends State<SearchPage> {
       bicycleModel: "2023 Model",
       imageData:
           "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/allied-bc40-mountain-bike-review-lead-1663794038.jpg",
+      latitudeData: -12.202215393186274,
+      longitudeData: -77.00418832764358,
+      userId: 1,
     ),
     Bicycle(
       id: 5,
@@ -61,6 +73,9 @@ class _SearchPageState extends State<SearchPage> {
       bicycleModel: "2023 Model",
       imageData:
           "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/allied-bc40-mountain-bike-review-lead-1663794038.jpg",
+      latitudeData: -12.202215393186274,
+      longitudeData: -77.00418832764358,
+      userId: 1,
     ),
   ];
 
