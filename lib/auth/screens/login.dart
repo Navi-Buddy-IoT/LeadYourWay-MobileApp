@@ -114,13 +114,13 @@ class _LoginForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginForm = ref.watch(loginFormProvider);
-    ref.listen(authProvider, (previous, next) {
-      if (next.errorMessage.isEmpty) {
-        return;
-      }
-      showSnackBar(context, next.errorMessage);
-    });
+    //final loginForm = ref.watch(loginFormProvider);
+    // ref.listen(authProvider, (previous, next) {
+    //   if (next.errorMessage.isEmpty) {
+    //     return;
+    //   }
+    //   showSnackBar(context, next.errorMessage);
+    // });
 
     return Column(
       children: [
@@ -139,55 +139,55 @@ class _LoginForm extends ConsumerWidget {
           controller: passwordController,
         ),
         const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          height: 60,
-          child: CustomButton(
-            text: 'Ingresar',
-            onPressed: loginForm.isPosting
-                ? null
-                : ref.read(loginFormProvider.notifier).onFormSubmit,
-            isPosting: loginForm.isPosting,
-          ),
-        )
-        // FilledButton(
-        //   onPressed: () {
-        //     final email = emailController.text;
-        //     final password = passwordController.text;
-        //     final bool emailValid = RegExp(
-        //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        //         .hasMatch(email);
-
-        //     if (email.isEmpty || password.isEmpty) {
-        //       sendAlertMessage("Please fill all the fields");
-        //       return;
-        //     }
-
-        //     if (!emailValid) {
-        //       sendAlertMessage("Please enter a valid email address");
-        //       return;
-        //     }
-
-        //     smoothNavigation(
-        //       context,
-        //       const Login(),
-        //       const LywNavigator(),
-        //       0.0,
-        //       -1.0,
-        //       0.0,
-        //       1.0,
-        //     );
-        //   },
-        //   style: FilledButton.styleFrom(
-        //     backgroundColor: const Color.fromARGB(255, 252, 150, 82),
-        //     foregroundColor: Colors.white,
-        //     fixedSize: const Size(200, 50),
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(32),
-        //     ),
+        // SizedBox(
+        //   width: double.infinity,
+        //   height: 60,
+        //   child: CustomButton(
+        //     text: 'Ingresar',
+        //     onPressed: loginForm.isPosting
+        //         ? null
+        //         : ref.read(loginFormProvider.notifier).onFormSubmit,
+        //     isPosting: loginForm.isPosting,
         //   ),
-        //   child: const Text("Login"),
-        // ),
+        // )
+        FilledButton(
+          onPressed: () {
+            final email = emailController.text;
+            final password = passwordController.text;
+            final bool emailValid = RegExp(
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                .hasMatch(email);
+
+            if (email.isEmpty || password.isEmpty) {
+              sendAlertMessage("Please fill all the fields");
+              return;
+            }
+
+            if (!emailValid) {
+              sendAlertMessage("Please enter a valid email address");
+              return;
+            }
+
+            smoothNavigation(
+              context,
+              const Login(),
+              const LywNavigator(),
+              0.0,
+              -1.0,
+              0.0,
+              1.0,
+            );
+          },
+          style: FilledButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 252, 150, 82),
+            foregroundColor: Colors.white,
+            fixedSize: const Size(200, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+          ),
+          child: const Text("Login"),
+        ),
       ],
     );
   }
