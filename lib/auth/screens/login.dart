@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lead_your_way/auth/provider/auth_provider.dart';
+import 'package:lead_your_way/auth/provider/login_provider.dart';
 import 'package:lead_your_way/auth/screens/signup.dart';
 import 'package:lead_your_way/renting/screens/home_page.dart';
 import 'package:lead_your_way/shared/services/Smooth_Navigation.dart';
 import 'package:lead_your_way/shared/services/notifier.dart';
+import 'package:lead_your_way/shared/widgets/lyw_custom_button.dart';
 import 'package:lead_your_way/shared/widgets/lyw_navigator.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
@@ -25,7 +29,9 @@ class _LoginState extends State<Login> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -53,59 +59,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 32),
-            RoundedInputField(
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              hintText: "Your email",
-              icon: const Icon(Icons.person),
-              controller: emailController,
-            ),
-            RoundedInputFieldObscure(
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.done,
-              hintText: "Your password",
-              icon: const Icon(Icons.lock),
-              controller: passwordController,
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () {
-                final email = emailController.text;
-                final password = passwordController.text;
-                final bool emailValid = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(email);
-
-                if (email.isEmpty || password.isEmpty) {
-                  sendAlertMessage("Please fill all the fields");
-                  return;
-                }
-
-                if (!emailValid) {
-                  sendAlertMessage("Please enter a valid email address");
-                  return;
-                }
-
-                smoothNavigation(
-                  context,
-                  const Login(),
-                  const LywNavigator(),
-                  0.0,
-                  -1.0,
-                  0.0,
-                  1.0,
-                );
-              },
-              style: FilledButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 252, 150, 82),
-                foregroundColor: Colors.white,
-                fixedSize: const Size(200, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-              ),
-              child: const Text("Login"),
-            ),
+            _LoginForm(emailController, passwordController),
             const SizedBox(height: 96),
             SignUpLink(),
           ],
@@ -141,6 +95,99 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class _LoginForm extends ConsumerWidget {
+  const _LoginForm(this.emailController, this.passwordController);
+
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginForm = ref.watch(loginFormProvider);
+    ref.listen(authProvider, (previous, next) {
+      if (next.errorMessage.isEmpty) {
+        return;
+      }
+      showSnackBar(context, next.errorMessage);
+    });
+
+    return Column(
+      children: [
+        RoundedInputField(
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.next,
+          hintText: "Your email",
+          icon: const Icon(Icons.person),
+          controller: emailController,
+        ),
+        RoundedInputFieldObscure(
+          keyboardType: TextInputType.visiblePassword,
+          textInputAction: TextInputAction.done,
+          hintText: "Your password",
+          icon: const Icon(Icons.lock),
+          controller: passwordController,
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          height: 60,
+          child: CustomButton(
+            text: 'Ingresar',
+            onPressed: loginForm.isPosting
+                ? null
+                : ref.read(loginFormProvider.notifier).onFormSubmit,
+            isPosting: loginForm.isPosting,
+          ),
+        )
+        // FilledButton(
+        //   onPressed: () {
+        //     final email = emailController.text;
+        //     final password = passwordController.text;
+        //     final bool emailValid = RegExp(
+        //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        //         .hasMatch(email);
+
+        //     if (email.isEmpty || password.isEmpty) {
+        //       sendAlertMessage("Please fill all the fields");
+        //       return;
+        //     }
+
+        //     if (!emailValid) {
+        //       sendAlertMessage("Please enter a valid email address");
+        //       return;
+        //     }
+
+        //     smoothNavigation(
+        //       context,
+        //       const Login(),
+        //       const LywNavigator(),
+        //       0.0,
+        //       -1.0,
+        //       0.0,
+        //       1.0,
+        //     );
+        //   },
+        //   style: FilledButton.styleFrom(
+        //     backgroundColor: const Color.fromARGB(255, 252, 150, 82),
+        //     foregroundColor: Colors.white,
+        //     fixedSize: const Size(200, 50),
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(32),
+        //     ),
+        //   ),
+        //   child: const Text("Login"),
+        // ),
       ],
     );
   }
