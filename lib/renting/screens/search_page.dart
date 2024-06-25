@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lead_your_way/onboarding/widgets/bicycle_card.dart';
+import 'package:lead_your_way/renting/widgets/bicycles_list.dart';
 import 'package:lead_your_way/shared/models/bicycle.dart';
 
 class SearchPage extends StatefulWidget {
@@ -10,7 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<Bicycle> hardcodedBicycles = [
+  /*List<Bicycle> hardcodedBicycles = [
     Bicycle(
       id: 1,
       bicycleDescription: "A comfortable and versatile city bike.",
@@ -62,16 +63,15 @@ class _SearchPageState extends State<SearchPage> {
       imageData:
           "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/allied-bc40-mountain-bike-review-lead-1663794038.jpg",
     ),
-  ];
+  ];*/
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: ListView(
-          children: [
-            for (Bicycle bicycle in hardcodedBicycles)
-              BicycleCard(bicycle: bicycle)
+          children: const [
+            BicycleList()
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lead_your_way/auth/screens/login.dart';
 import 'package:lead_your_way/shared/services/Smooth_Navigation.dart';
 import 'package:lead_your_way/shared/services/notifier.dart';
+import 'package:lead_your_way/shared/widgets/lyw_navigator.dart';
 import 'package:lead_your_way/shared/widgets/lyw_rounded_input_filed.dart';
 
 class SignUp extends StatefulWidget {
@@ -92,6 +93,15 @@ class _SignUpState extends State<SignUp> {
                   sendAlertMessage("Your password does not match");
                   return;
                 }
+                smoothNavigation(
+                  context,
+                  const Login(),
+                  const LywNavigator(),
+                  0.0,
+                  -1.0,
+                  0.0,
+                  1.0,
+                );
               },
               style: FilledButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 252, 150, 82),
