@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lead_your_way/renting/screens/rented_page.dart';
 import 'package:lead_your_way/shared/models/bicycle.dart';
 
 class RentPage extends StatelessWidget {
@@ -51,17 +52,31 @@ class RentPage extends StatelessWidget {
             const SizedBox(height: 40),
             const Text('Availability',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const Spacer(),
-            const Row(
+            const SizedBox(
+              height: 20,
+            ),
+            const Text('AVAILABLE NOW!!!'),
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                     height: 50,
                     width: 200,
                     child: ElevatedButton(
-                        //TODO: Add navigation
-                        onPressed: null,
-                        child: Text('Rent now')))
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RentedPage(bicycle: bicycle)));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange
+                        ),
+                        child: const Text('Rent now')))
               ],
             )
           ]),

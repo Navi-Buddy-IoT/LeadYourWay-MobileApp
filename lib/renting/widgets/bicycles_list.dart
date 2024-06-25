@@ -11,31 +11,33 @@ class BicycleList extends StatefulWidget {
 }
 
 class _BicycleListState extends State<BicycleList> {
-  BicycleService? _bicycleService;
   List<Bicycle> _bicycles = [];
+  
+  initialize() async {
+    final bicycles = (await BicycleService().getAllBicycles()).data as List<Bicycle>;
+    setState(() {
+      _bicycles = bicycles;
+    });
+  }
 
   @override
   void initState() {
-    _bicycleService = BicycleService();
-    _fetchPage();
+    initialize();
     super.initState();
   }
 
-  Future _fetchPage() async {
-    try {
-      final bicycles = (await _bicycleService!.getAllBicycles()).data as List<Bicycle>;
-      setState(() {
-        _bicycles = bicycles;
-      });
-    } catch (error) {
-      print(error);
-    }
-  }
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: _bicycles.map((bicycle) => BicycleCard(bicycle: bicycle)).toList()
+    
+    if (_bicycles.isEmpty) {
+      return const Center(child: Text('No bicycles available'));
+    }
+
+    return ListView.builder(
+      itemCount: _bicycles.length,
+      itemBuilder: (context, index) {
+        return BicycleCard(bicycle: _bicycles[index]);
+      },
     );
   }
 }
